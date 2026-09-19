@@ -16,6 +16,12 @@ interface HeaderBarProps {
   isAmbient: boolean;
 }
 
+const headerDateFormatter = new Intl.DateTimeFormat('en-US', {
+  weekday: 'short',
+  month: 'short',
+  day: 'numeric',
+});
+
 export const HeaderBar: React.FC<HeaderBarProps> = ({
   date,
   weather,
@@ -28,9 +34,9 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
   onOpenTimer,
   isAmbient,
 }) => {
-  const formattedDay = date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }).toUpperCase();
-
   if (isAmbient) return null;
+
+  const formattedDay = headerDateFormatter.format(date).toUpperCase();
 
   return (
     <header
@@ -48,14 +54,16 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         backgroundColor: 'var(--bg-secondary)',
         backdropFilter: 'var(--glass-blur)',
         WebkitBackdropFilter: 'var(--glass-blur)',
-        zIndex: 10,
+        zIndex: 30,
         height: '42px',
         flexShrink: 0,
+        WebkitTransform: 'translateZ(0)',
+        transform: 'translateZ(0)',
       }}
     >
       {/* Left: Date & Connection */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <span>{formattedDay}</span>
+        <span suppressHydrationWarning>{formattedDay}</span>
         <span
           style={{
             display: 'inline-flex',
@@ -90,16 +98,16 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
           </span>
         )}
 
-        <button className="touch-btn" onClick={onOpenAlarm} title="Alarms" style={{ width: '32px', height: '32px', minWidth: '32px', minHeight: '32px', padding: 0 }}>
+        <button className="touch-btn" onClick={onOpenAlarm} title="Alarms" style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
           ⏰
         </button>
-        <button className="touch-btn" onClick={onOpenStopwatch} title="Stopwatch" style={{ width: '32px', height: '32px', minWidth: '32px', minHeight: '32px', padding: 0 }}>
+        <button className="touch-btn" onClick={onOpenStopwatch} title="Stopwatch" style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
           ⏱
         </button>
-        <button className="touch-btn" onClick={onOpenTimer} title="Timer" style={{ width: '32px', height: '32px', minWidth: '32px', minHeight: '32px', padding: 0 }}>
+        <button className="touch-btn" onClick={onOpenTimer} title="Timer" style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
           ⏳
         </button>
-        <button className="touch-btn" onClick={onOpenSettings} title="Settings" style={{ width: '32px', height: '32px', minWidth: '32px', minHeight: '32px', padding: 0 }}>
+        <button className="touch-btn" onClick={onOpenSettings} title="Settings" style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
           ⚙
         </button>
       </div>

@@ -94,6 +94,7 @@ export const ClockDashboard: React.FC = () => {
       className={`clock-app-root ${isAutoDimmed ? 'auto-dimmed' : ''}`}
       data-theme={settings.theme}
       onClick={resetTimer}
+      onTouchStart={resetTimer}
       suppressHydrationWarning
     >
       <PortraitWarning />

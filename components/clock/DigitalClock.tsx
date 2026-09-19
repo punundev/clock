@@ -10,6 +10,20 @@ interface DigitalClockProps {
   size?: 'sm' | 'md' | 'lg' | 'hero';
 }
 
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  weekday: 'long',
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+
+const fontSizeMap = {
+  sm: '2rem',
+  md: '3.5rem',
+  lg: '5rem',
+  hero: 'clamp(3.5rem, 15vw, 6.5rem)',
+};
+
 export const DigitalClock: React.FC<DigitalClockProps> = ({
   date,
   format12h = false,
@@ -28,20 +42,7 @@ export const DigitalClock: React.FC<DigitalClockProps> = ({
   }
 
   const hoursStr = format12h ? hours.toString() : hours.toString().padStart(2, '0');
-
-  const formattedDateStr = new Intl.DateTimeFormat('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  }).format(date).toUpperCase();
-
-  const fontSizeMap = {
-    sm: '2rem',
-    md: '3.5rem',
-    lg: '5rem',
-    hero: 'clamp(3.5rem, 15vw, 6.5rem)',
-  };
+  const formattedDateStr = dateFormatter.format(date).toUpperCase();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
