@@ -45,7 +45,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         alignItems: 'center',
         justifyContent: 'space-between',
         width: '100%',
-        padding: '8px 16px',
+        padding: '6px 14px',
         fontSize: '12px',
         fontWeight: 600,
         letterSpacing: '0.05em',
@@ -55,14 +55,14 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
         backdropFilter: 'var(--glass-blur)',
         WebkitBackdropFilter: 'var(--glass-blur)',
         zIndex: 30,
-        height: '42px',
+        minHeight: '48px',
         flexShrink: 0,
         WebkitTransform: 'translateZ(0)',
         transform: 'translateZ(0)',
       }}
     >
       {/* Left: Date & Connection */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <span suppressHydrationWarning>{formattedDay}</span>
         <span
           style={{
@@ -91,23 +91,23 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
       )}
 
       {/* Right: Quick Action Buttons & Battery */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
         {batteryLevel !== null && (
           <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: 'var(--text-muted)' }}>
             {batteryCharging ? '⚡' : '🔋'} {batteryLevel}%
           </span>
         )}
 
-        <button className="touch-btn" onClick={onOpenAlarm} title="Alarms" style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
+        <button className="touch-btn" onClick={onOpenAlarm} title="Alarms" style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0 }}>
           ⏰
         </button>
-        <button className="touch-btn" onClick={onOpenStopwatch} title="Stopwatch" style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
+        <button className="touch-btn" onClick={onOpenStopwatch} title="Stopwatch" style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0 }}>
           ⏱
         </button>
-        <button className="touch-btn" onClick={onOpenTimer} title="Timer" style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
+        <button className="touch-btn" onClick={onOpenTimer} title="Timer" style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0 }}>
           ⏳
         </button>
-        <button className="touch-btn" onClick={onOpenSettings} title="Settings" style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
+        <button className="touch-btn" onClick={onOpenSettings} title="Settings" style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0 }}>
           ⚙
         </button>
       </div>

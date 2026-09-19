@@ -34,19 +34,19 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
         display: 'flex',
         alignItems: 'center',
         gap: '8px',
-        padding: '6px 10px',
-        borderRadius: '24px',
-        background: 'rgba(15, 23, 42, 0.85)',
+        padding: '6px 12px',
+        borderRadius: '28px',
+        background: 'rgba(15, 23, 42, 0.92)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         border: '1px solid var(--border-color)',
         zIndex: 40,
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
         touchAction: 'manipulation',
       }}
     >
       {/* Mode Switcher Segmented Buttons */}
-      <div style={{ display: 'flex', background: 'rgba(255, 255, 255, 0.06)', padding: '2px', borderRadius: '18px' }}>
+      <div style={{ display: 'flex', background: 'rgba(255, 255, 255, 0.08)', padding: '3px', borderRadius: '22px' }}>
         <button
           className="touch-btn"
           onClick={() => onModeChange('digital')}
@@ -55,10 +55,10 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
             background: displayMode === 'digital' ? 'var(--accent)' : 'transparent',
             color: displayMode === 'digital' ? '#000000' : 'var(--text-secondary)',
             fontWeight: 700,
-            fontSize: '11px',
-            padding: '6px 12px',
-            minHeight: '36px',
-            borderRadius: '14px',
+            fontSize: '12px',
+            padding: '6px 14px',
+            minHeight: '40px',
+            borderRadius: '18px',
           }}
         >
           Digital
@@ -71,10 +71,10 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
             background: displayMode === 'hybrid' ? 'var(--accent)' : 'transparent',
             color: displayMode === 'hybrid' ? '#000000' : 'var(--text-secondary)',
             fontWeight: 700,
-            fontSize: '11px',
-            padding: '6px 12px',
-            minHeight: '36px',
-            borderRadius: '14px',
+            fontSize: '12px',
+            padding: '6px 14px',
+            minHeight: '40px',
+            borderRadius: '18px',
           }}
         >
           Hybrid
@@ -87,17 +87,17 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
             background: displayMode === 'analog' ? 'var(--accent)' : 'transparent',
             color: displayMode === 'analog' ? '#000000' : 'var(--text-secondary)',
             fontWeight: 700,
-            fontSize: '11px',
-            padding: '6px 12px',
-            minHeight: '36px',
-            borderRadius: '14px',
+            fontSize: '12px',
+            padding: '6px 14px',
+            minHeight: '40px',
+            borderRadius: '18px',
           }}
         >
           Analog
         </button>
       </div>
 
-      <div style={{ width: '1px', height: '16px', background: 'var(--border-color)' }} />
+      <div style={{ width: '1px', height: '20px', background: 'var(--border-color)' }} />
 
       {/* Ambient Toggle */}
       <button
@@ -105,10 +105,10 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
         onClick={onToggleAmbient}
         title={ambientMode ? 'Exit Ambient Clock' : 'Ambient Clock Mode'}
         style={{
-          width: '36px',
-          height: '36px',
-          minWidth: '36px',
-          minHeight: '36px',
+          width: '44px',
+          height: '44px',
+          minWidth: '44px',
+          minHeight: '44px',
           padding: 0,
           borderRadius: '50%',
           background: ambientMode ? 'var(--accent-glow)' : 'transparent',
@@ -123,7 +123,7 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
         className="touch-btn"
         onClick={onToggleFullscreen}
         title="Toggle Fullscreen"
-        style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0, borderRadius: '50%', border: 'none' }}
+        style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0, borderRadius: '50%', border: 'none' }}
       >
         ⛶
       </button>
@@ -133,7 +133,7 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
         className="touch-btn"
         onClick={onOpenSettings}
         title="Settings"
-        style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0, borderRadius: '50%', border: 'none' }}
+        style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0, borderRadius: '50%', border: 'none' }}
       >
         ⚙
       </button>
