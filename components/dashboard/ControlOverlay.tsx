@@ -27,7 +27,7 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
       className={`controls-fade ${visible ? 'controls-visible' : 'controls-hidden'}`}
       style={{
         position: 'absolute',
-        bottom: '12px',
+        bottom: 'calc(env(safe-area-inset-bottom, 0px) + 24px)',
         left: '50%',
         WebkitTransform: 'translateX(-50%) translateZ(0)',
         transform: 'translateX(-50%) translateZ(0)',

@@ -87,7 +87,7 @@ export const ClockDashboard: React.FC = () => {
   };
 
   const isAutoDimmed = settings.autoDimTimeout > 0 && isIdle && !settings.ambientMode;
-  const isControlsVisible = !isIdle || activeModal !== null;
+  const isControlsVisible = !settings.hideControls || !isIdle || activeModal !== null;
 
   return (
     <div

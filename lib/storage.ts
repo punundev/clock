@@ -10,7 +10,7 @@ export const DEFAULT_SETTINGS: ClockSettings = {
   theme: 'dark',
   analogStyle: 'modern',
   autoDimTimeout: 60, // 1 minute
-  hideControls: true,
+  hideControls: false,
   ambientMode: false,
   tempUnit: 'C',
   location: {
