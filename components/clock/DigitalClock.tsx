@@ -47,6 +47,7 @@ export const DigitalClock: React.FC<DigitalClockProps> = ({
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <div
         className="tabular-nums"
+        suppressHydrationWarning
         style={{
           fontFamily: 'var(--digital-font)',
           fontSize: fontSizeMap[size],
@@ -81,6 +82,7 @@ export const DigitalClock: React.FC<DigitalClockProps> = ({
 
       {showDate && (
         <div
+          suppressHydrationWarning
           style={{
             marginTop: '0.5rem',
             fontSize: 'clamp(0.75rem, 2.5vw, 1.1rem)',

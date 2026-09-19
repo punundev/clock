@@ -89,15 +89,12 @@ export const ClockDashboard: React.FC = () => {
   const isAutoDimmed = settings.autoDimTimeout > 0 && isIdle && !settings.ambientMode;
   const isControlsVisible = !isIdle || activeModal !== null;
 
-  if (!mounted) {
-    return <div className="clock-app-root" data-theme={settings.theme} />;
-  }
-
   return (
     <div
       className={`clock-app-root ${isAutoDimmed ? 'auto-dimmed' : ''}`}
       data-theme={settings.theme}
       onClick={resetTimer}
+      suppressHydrationWarning
     >
       <PortraitWarning />
 
