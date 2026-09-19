@@ -4,35 +4,39 @@ export function useClockEngine() {
   const [now, setNow] = useState<Date>(() => new Date());
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let lastSecond = -1;
 
-    const updateClock = () => {
+    const tick = () => {
       const current = new Date();
-      setNow(current);
-
-      // Align tick precisely to the next second boundary
-      const delay = 1000 - current.getMilliseconds();
-      timeoutId = setTimeout(updateClock, delay);
+      const sec = current.getSeconds();
+      if (sec !== lastSecond) {
+        lastSecond = sec;
+        setNow(current);
+      }
     };
 
-    updateClock();
+    tick();
 
-    // Immediately recalculate time when tab becomes visible or wakes up
+    // 200ms poll interval prevents iOS Safari recursive setTimeout throttling & freezing
+    const intervalId = setInterval(tick, 200);
+
     const handleVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        setNow(new Date());
-      }
+      const current = new Date();
+      lastSecond = current.getSeconds();
+      setNow(current);
     };
 
     window.addEventListener('visibilitychange', handleVisibility);
     window.addEventListener('pageshow', handleVisibility);
     window.addEventListener('focus', handleVisibility);
+    window.addEventListener('touchstart', handleVisibility, { passive: true });
 
     return () => {
-      clearTimeout(timeoutId);
+      clearInterval(intervalId);
       window.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('pageshow', handleVisibility);
       window.removeEventListener('focus', handleVisibility);
+      window.removeEventListener('touchstart', handleVisibility);
     };
   }, []);
 
