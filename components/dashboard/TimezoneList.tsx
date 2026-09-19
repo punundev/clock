@@ -9,27 +9,40 @@ interface TimezoneListProps {
   format12h?: boolean;
 }
 
-const formatterCache = new Map<string, Intl.DateTimeFormat>();
+const formatterCache = new Map<string, Intl.DateTimeFormat | null>();
 
 function formatTzTime(date: Date, timezone: string, format12h: boolean): string {
+  if (!date || isNaN(date.getTime())) return '--:--';
   const key = `${timezone}_${format12h}`;
+
   if (!formatterCache.has(key)) {
     try {
-      formatterCache.set(
-        key,
-        new Intl.DateTimeFormat('en-US', {
-          timeZone: timezone,
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: format12h,
-        })
-      );
+      const fmt = new Intl.DateTimeFormat('en-US', {
+        timeZone: timezone,
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: format12h,
+      });
+      formatterCache.set(key, fmt);
     } catch {
-      return '--:--';
+      // Fallback for unsupported IANA timezone strings on older WebKit engines
+      formatterCache.set(key, null);
     }
   }
+
   const fmt = formatterCache.get(key);
-  return fmt ? fmt.format(date) : '--:--';
+  if (!fmt) {
+    // Fallback display if timezone format fails on legacy WebKit
+    const h = (format12h ? date.getHours() % 12 || 12 : date.getHours()).toString().padStart(2, '0');
+    const m = date.getMinutes().toString().padStart(2, '0');
+    return `${h}:${m}`;
+  }
+
+  try {
+    return fmt.format(date);
+  } catch {
+    return '--:--';
+  }
 }
 
 export const TimezoneList: React.FC<TimezoneListProps> = ({ date, timezones, format12h = false }) => {

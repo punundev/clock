@@ -84,7 +84,7 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
       {/* Center: Weather & Location snippet */}
       {weather && (
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span>{weather.locationName.split(',')[0]}</span>
+          <span>{(weather.locationName || 'Phnom Penh').split(',')[0]}</span>
           <span style={{ color: 'var(--accent)', fontWeight: 700 }}>{weather.temperature}°C</span>
           <span style={{ opacity: 0.8 }}>{weather.condition}</span>
         </div>

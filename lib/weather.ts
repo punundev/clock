@@ -78,8 +78,13 @@ export async function fetchWeatherData(
 
     const formatSunTime = (isoStr: string) => {
       if (!isoStr) return '--:--';
-      const d = new Date(isoStr);
-      return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      try {
+        const d = new Date(isoStr);
+        if (isNaN(d.getTime())) return '--:--';
+        return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+      } catch {
+        return '--:--';
+      }
     };
 
     const result: WeatherData = {
