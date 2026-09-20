@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ClockSettings, ThemeName, DisplayMode, AnalogStyle, AutoDimTimeout } from '@/lib/types';
+import { Settings, X, Plus } from 'lucide-react';
 
 interface SettingsPanelProps {
   isOpen: boolean;
@@ -56,8 +57,12 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       <div className="modal-content custom-scroll" onClick={e => e.stopPropagation()} style={{ maxWidth: '520px', padding: '16px' }}>
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-          <h2 style={{ fontSize: '16px', fontWeight: 700 }}>⚙ Smart Clock Settings</h2>
-          <button className="touch-btn" onClick={onClose} style={{ width: '32px', height: '32px', minWidth: '32px', minHeight: '32px', padding: 0 }}>✕</button>
+          <h2 style={{ fontSize: '16px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Settings size={18} color="var(--accent)" /> Smart Clock Settings
+          </h2>
+          <button className="touch-btn" onClick={onClose} style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
+            <X size={18} />
+          </button>
         </div>
 
         {/* Segmented Navigation Tabs */}
@@ -234,14 +239,18 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
                 onChange={e => setNewTzName(e.target.value)}
                 style={{ flex: 1, background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '6px 8px', color: 'var(--text-primary)', fontSize: '12px' }}
               />
-              <button className="touch-btn" type="submit" style={{ padding: '0 12px', fontSize: '12px' }}>+ Add</button>
+              <button className="touch-btn" type="submit" style={{ padding: '0 12px', fontSize: '12px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                <Plus size={14} /> Add
+              </button>
             </form>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '180px', overflowY: 'auto' }} className="custom-scroll">
               {settings.timezones.map(tz => (
                 <div key={tz.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 10px', background: 'var(--bg-secondary)', borderRadius: '6px' }}>
                   <span style={{ fontSize: '12px', fontWeight: 600 }}>{tz.label} ({tz.timezone})</span>
-                  <button className="touch-btn" onClick={() => handleRemoveTimezone(tz.id)} style={{ width: '28px', height: '28px', minWidth: '28px', minHeight: '28px', padding: 0 }}>✕</button>
+                  <button className="touch-btn" onClick={() => handleRemoveTimezone(tz.id)} style={{ width: '32px', height: '32px', minWidth: '32px', minHeight: '32px', padding: 0 }}>
+                    <X size={16} />
+                  </button>
                 </div>
               ))}
             </div>

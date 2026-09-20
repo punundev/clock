@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { WeatherData } from '@/lib/types';
+import { AlarmClock, Timer, Hourglass, Settings, Zap, Battery, BatteryCharging } from 'lucide-react';
 
 interface HeaderBarProps {
   date: Date;
@@ -94,21 +95,22 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
         {batteryLevel !== null && (
           <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: 'var(--text-muted)' }}>
-            {batteryCharging ? '⚡' : '🔋'} {batteryLevel}%
+            {batteryCharging ? <Zap size={14} color="var(--accent)" /> : <Battery size={14} />}
+            {batteryLevel}%
           </span>
         )}
 
         <button className="touch-btn" onClick={onOpenAlarm} title="Alarms" style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0 }}>
-          ⏰
+          <AlarmClock size={18} />
         </button>
         <button className="touch-btn" onClick={onOpenStopwatch} title="Stopwatch" style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0 }}>
-          ⏱
+          <Timer size={18} />
         </button>
         <button className="touch-btn" onClick={onOpenTimer} title="Timer" style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0 }}>
-          ⏳
+          <Hourglass size={18} />
         </button>
         <button className="touch-btn" onClick={onOpenSettings} title="Settings" style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0 }}>
-          ⚙
+          <Settings size={18} />
         </button>
       </div>
     </header>

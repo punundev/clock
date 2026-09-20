@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { AlarmItem } from '@/lib/types';
+import { AlarmClock, Info, Plus, Trash2, X } from 'lucide-react';
 
 interface AlarmManagerModalProps {
   isOpen: boolean;
@@ -55,8 +56,12 @@ export const AlarmManagerModal: React.FC<AlarmManagerModalProps> = ({
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content custom-scroll" onClick={e => e.stopPropagation()} style={{ maxWidth: '460px', padding: '20px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-          <h2 style={{ fontSize: '16px', fontWeight: 700 }}>⏰ Alarm Manager</h2>
-          <button className="touch-btn" onClick={onClose} style={{ width: '32px', height: '32px', minWidth: '32px', minHeight: '32px', padding: 0 }}>✕</button>
+          <h2 style={{ fontSize: '16px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <AlarmClock size={18} color="var(--accent)" /> Alarm Manager
+          </h2>
+          <button className="touch-btn" onClick={onClose} style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
+            <X size={18} />
+          </button>
         </div>
 
         {/* Browser limitation banner */}
@@ -69,9 +74,13 @@ export const AlarmManagerModal: React.FC<AlarmManagerModalProps> = ({
             borderRadius: '8px',
             marginBottom: '14px',
             lineHeight: 1.4,
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '8px',
           }}
         >
-          ℹ️ Note: Alarms trigger while this web application remains open in the browser. Keep screen active or use Ambient mode for overnight bedside alarms.
+          <Info size={16} color="var(--accent)" style={{ flexShrink: 0, marginTop: '2px' }} />
+          <span>Note: Alarms trigger while this web application remains open in the browser. Keep screen active or use Ambient mode for overnight bedside alarms.</span>
         </div>
 
         {/* Add Alarm Form */}
@@ -148,8 +157,21 @@ export const AlarmManagerModal: React.FC<AlarmManagerModalProps> = ({
             })}
           </div>
 
-          <button className="touch-btn" type="submit" style={{ background: 'var(--accent)', color: '#000', fontWeight: 700, marginTop: '4px' }}>
-            + Add Alarm
+          <button
+            className="touch-btn"
+            type="submit"
+            style={{
+              background: 'var(--accent)',
+              color: '#000',
+              fontWeight: 700,
+              marginTop: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+            }}
+          >
+            <Plus size={16} /> Add Alarm
           </button>
         </form>
 
@@ -192,8 +214,8 @@ export const AlarmManagerModal: React.FC<AlarmManagerModalProps> = ({
                   >
                     {a.enabled ? 'ON' : 'OFF'}
                   </button>
-                  <button className="touch-btn" onClick={() => handleDeleteAlarm(a.id)} style={{ width: '32px', height: '32px', minWidth: '32px', minHeight: '32px', padding: 0 }}>
-                    🗑
+                  <button className="touch-btn" onClick={() => handleDeleteAlarm(a.id)} style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
+                    <Trash2 size={16} color="#ef4444" />
                   </button>
                 </div>
               </div>

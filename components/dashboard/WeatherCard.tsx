@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { WeatherData } from '@/lib/types';
+import { RotateCw, Sunrise } from 'lucide-react';
 
 interface WeatherCardProps {
   weather: WeatherData | null;
@@ -35,10 +36,10 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ weather, onRefresh }) 
         {onRefresh && (
           <button
             onClick={onRefresh}
-            style={{ background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', fontSize: '12px' }}
+            style={{ background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', padding: '2px' }}
             title="Refresh Weather"
           >
-            ↻
+            <RotateCw size={12} />
           </button>
         )}
       </div>
@@ -54,7 +55,9 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({ weather, onRefresh }) 
         <div>Feels: {weather.feelsLike}°C</div>
         <div>Humidity: {weather.humidity}%</div>
         <div>Wind: {weather.windSpeed} km/h</div>
-        <div>Sun: 🌅 {weather.sunrise}</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <Sunrise size={12} color="var(--accent)" /> {weather.sunrise}
+        </div>
       </div>
     </div>
   );

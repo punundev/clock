@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { RotateCcw, X } from 'lucide-react';
 
 export const PortraitWarning: React.FC = () => {
   const [isPortrait, setIsPortrait] = useState<boolean>(false);
@@ -43,7 +44,7 @@ export const PortraitWarning: React.FC = () => {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <span style={{ fontSize: '16px' }}>🔄</span>
+        <RotateCcw size={16} />
         <span>Rotate your iPhone to landscape mode for the optimal smart clock experience.</span>
       </div>
       <button
@@ -53,11 +54,12 @@ export const PortraitWarning: React.FC = () => {
           border: 'none',
           fontWeight: 700,
           cursor: 'pointer',
-          padding: '4px 8px',
-          fontSize: '14px',
+          padding: '4px',
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
-        ✕
+        <X size={16} />
       </button>
     </div>
   );

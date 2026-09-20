@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { Timer, X } from 'lucide-react';
 
 interface StopwatchModalProps {
   isOpen: boolean;
@@ -76,8 +77,12 @@ export const StopwatchModal: React.FC<StopwatchModalProps> = ({ isOpen, onClose 
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: '420px', padding: '20px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-          <h2 style={{ fontSize: '16px', fontWeight: 700 }}>⏱ Stopwatch</h2>
-          <button className="touch-btn" onClick={onClose} style={{ width: '32px', height: '32px', minWidth: '32px', minHeight: '32px', padding: 0 }}>✕</button>
+          <h2 style={{ fontSize: '16px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Timer size={18} color="var(--accent)" /> Stopwatch
+          </h2>
+          <button className="touch-btn" onClick={onClose} style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', padding: 0 }}>
+            <X size={18} />
+          </button>
         </div>
 
         {/* Big Digit Display */}

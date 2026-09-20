@@ -10,6 +10,7 @@ import { loadSettings, saveSettings } from '@/lib/storage';
 import { ClockSettings, WeatherData, AlarmItem } from '@/lib/types';
 import { fetchWeatherData } from '@/lib/weather';
 import { checkTriggeredAlarms, playAlarmSound } from '@/lib/alarms';
+import { AlarmClock } from 'lucide-react';
 
 import { DigitalClock } from '@/components/clock/DigitalClock';
 import { AnalogClock } from '@/components/clock/AnalogClock';
@@ -210,8 +211,8 @@ export const ClockDashboard: React.FC = () => {
       {/* Active Triggered Alarm Banner Alert */}
       {activeAlarmNotification && (
         <div className="modal-overlay" style={{ zIndex: 200 }}>
-          <div className="modal-content" style={{ padding: '24px', textAlign: 'center', maxWidth: '340px' }}>
-            <div style={{ fontSize: '48px', marginBottom: '8px' }}>⏰</div>
+          <div className="modal-content" style={{ padding: '24px', textAlign: 'center', maxWidth: '340px', alignItems: 'center' }}>
+            <AlarmClock size={48} color="var(--accent)" style={{ margin: '0 auto 8px auto' }} />
             <h2 style={{ fontSize: '20px', fontWeight: 800 }}>{activeAlarmNotification.label}</h2>
             <div className="tabular-nums" style={{ fontSize: '32px', fontWeight: 700, color: 'var(--accent)', margin: '12px 0' }}>
               {activeAlarmNotification.time}

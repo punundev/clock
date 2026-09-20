@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { DisplayMode } from '@/lib/types';
+import { Sun, Moon, Maximize, Settings } from 'lucide-react';
 
 interface ControlOverlayProps {
   visible: boolean;
@@ -115,7 +116,7 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
           border: ambientMode ? '1px solid var(--accent)' : '1px solid transparent',
         }}
       >
-        {ambientMode ? '☀️' : '🌙'}
+        {ambientMode ? <Sun size={18} /> : <Moon size={18} />}
       </button>
 
       {/* Fullscreen Toggle */}
@@ -125,7 +126,7 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
         title="Toggle Fullscreen"
         style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0, borderRadius: '50%', border: 'none' }}
       >
-        ⛶
+        <Maximize size={18} />
       </button>
 
       {/* Settings Modal */}
@@ -135,7 +136,7 @@ export const ControlOverlay: React.FC<ControlOverlayProps> = ({
         title="Settings"
         style={{ width: '44px', height: '44px', minWidth: '44px', minHeight: '44px', padding: 0, borderRadius: '50%', border: 'none' }}
       >
-        ⚙
+        <Settings size={18} />
       </button>
     </div>
   );
