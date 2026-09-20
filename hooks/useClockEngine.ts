@@ -29,14 +29,12 @@ export function useClockEngine() {
     window.addEventListener('visibilitychange', handleVisibility);
     window.addEventListener('pageshow', handleVisibility);
     window.addEventListener('focus', handleVisibility);
-    window.addEventListener('touchstart', handleVisibility, { passive: true });
 
     return () => {
       clearInterval(intervalId);
       window.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('pageshow', handleVisibility);
       window.removeEventListener('focus', handleVisibility);
-      window.removeEventListener('touchstart', handleVisibility);
     };
   }, []);
 
